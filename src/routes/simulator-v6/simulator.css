@@ -37,7 +37,7 @@ aside ul li {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  animation: option-entry 350ms var(--delay, 0s) var(--ease-out) backwards;
+  animation: entry 350ms var(--delay, 0s) var(--ease-out) backwards;
 }
 aside ul li span {
   margin-right: auto;
@@ -49,6 +49,17 @@ aside:has(ul:empty) {
 section {
   flex: 1;
   display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 24px;
+  padding: 24px;
+}
+section h1 {
+  font-size: 2rem;
+}
+.price {
+  display: inline-block;
+  width: 200px; /* Needed for animation */
+  view-transition-name: price;
 }
 
 ol {
@@ -107,16 +118,23 @@ button {
 
 menu button {
   --delay: calc(sibling-index() * 50ms);
-  animation: option-entry 350ms var(--delay, 0s) var(--ease-out) backwards;
+  animation: entry 350ms var(--delay, 0s) var(--ease-out) backwards;
   view-transition-class: option;
 
 }
 
+
+::view-transition-new(price) {
+  animation: entry 300ms var(--ease-out) backwards;
+}
+::view-transition-old(price) {
+  animation: price-leave 300ms var(--ease-out) forwards;
+}
 ::view-transition-old(.option) {
   animation: option-leave 150ms var(--ease-in) forwards;
 }
 
-@keyframes option-entry {
+@keyframes entry {
   from {
     transform: translateY(30px);
     opacity: 0;
@@ -125,6 +143,13 @@ menu button {
 @keyframes option-leave {
   to {
     transform: scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes price-leave {
+  to {
+    transform: translateY(-30px);
     opacity: 0;
   }
 }

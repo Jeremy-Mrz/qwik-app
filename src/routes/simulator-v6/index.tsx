@@ -1,8 +1,7 @@
-import { component$, unwrapStore, useStore, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, unwrapStore, useComputed$, useStore, useStyles$, useVisibleTask$ } from "@builder.io/qwik";
 import { useSignal } from "@builder.io/qwik";
-import { Option } from "~/utils/stepFormV4";
 import { transition$ } from "~/transition";
-import { steps } from './steps';
+import { Option, steps } from './steps';
 import styles from './simulator.css?raw';
 
 type StepKey = keyof typeof steps;
@@ -25,6 +24,8 @@ const getSimulationName = (simulation: Answer[]) => {
   return getOption(answer).label;
 }
 
+const formatter = Intl.NumberFormat('fr-FR', { style: "currency", currency: 'EUR' });
+
 export default component$(() => {
   useStyles$(styles);
   // Store the current question
@@ -45,6 +46,14 @@ export default component$(() => {
       localStorage.setItem('simulations', JSON.stringify(unwrapStore(simulations)));
     }
   })
+
+  const price = useComputed$(() => {
+    const total = answers.reduce((acc, answer) => {
+      const option = getOption(answer);
+      return acc + option.price;
+    }, 0);
+    return formatter.format(total);
+  });
 
   const back = transition$((index: number) => {
     const lastStep = answers[index];
@@ -107,6 +116,9 @@ export default component$(() => {
         </ul>
       </aside>
       <section>
+        <header>
+          <h1>Estimation: <span class="price">{price}</span></h1>
+        </header>
         <ol>
             {answers.map((answer, index) => (
               <>
