@@ -9,10 +9,11 @@ export default component$(() => {
         <br />
         Happy coding.
       </div>
-      <a href="/simulator">Simulateur</a>
+      <a href="/simulator">Simulateur V1</a>
       <a href="/simulator-v2">Simulateur V2</a>
       <a href="/simulator-v3">Simulateur V3</a>
       <a href="/simulator-v4">Simulateur V4</a>
+      <a href="/simulator-v5">Simulateur V5</a>
     </>
   );
 });
