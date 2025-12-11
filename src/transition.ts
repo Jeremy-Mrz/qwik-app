@@ -15,7 +15,6 @@ export function startViewTransition(options: ViewTransitionOptions = {}) {
       transition = (element as any).startViewTransition({
         update: async () => {
           if (update) await update();
-          await new Promise((res) => setTimeout(res));
         },
         types: ['qwik', ...types],
       });
@@ -23,7 +22,6 @@ export function startViewTransition(options: ViewTransitionOptions = {}) {
       // For browsers that don't support types
       transition = (element as any).startViewTransition(async () => {
         if (update) await update();
-        await new Promise((res) => setTimeout(res));
       });
     }
     document.dispatchEvent(
@@ -45,7 +43,7 @@ export function transitionQrl<T extends any[]>(
     return startViewTransition({
       update: async () => {
         await qrl(...args);
-        await new Promise((res) => setTimeout(res));
+        await new Promise((res) => setTimeout(res, 20));
       },
       ...options,
     });

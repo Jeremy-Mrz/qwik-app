@@ -1,0 +1,129 @@
+:root {
+  view-transition-name: none;
+  font-family: system-ui;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --hue: 45deg;
+  --chroma: 10%;
+}
+
+html {
+  background-color: oklch(100% 0.01 var(--hue));
+}
+
+main {
+  display: flex;
+  min-height: 100dvh;
+}
+
+aside {
+  display: grid;
+  padding: 24px;
+}
+aside ul {
+  background-color: oklch(98% 0.05 var(--hue));
+  border-radius: 16px;
+  padding: 16px;
+  margin-block: 0;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  view-timeline-name: match-element;
+}
+aside ul li {
+  display: grid;
+  padding-inline: 0;
+  animation: option-entry 350ms var(--delay, 0s) var(--ease-out) backwards;
+}
+aside button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+aside:has(ul:empty) {
+  display: none;
+}
+
+section {
+  flex: 1;
+  display: grid;
+}
+
+ol {
+  place-self: center;
+  display: grid;
+  gap: 16px;
+  min-width: 700px;
+}
+
+ol li {
+  --background: oklch(40% 0.1 var(--hue));
+  color: black;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+ol li:nth-child(odd) {
+  --lightness: 95%;
+  justify-self: start;
+}
+ol li:nth-child(even) {
+  --lightness: 80%;
+  justify-self: end;
+}
+
+.back {
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+}
+
+ol li:hover .back {
+  opacity: 1;
+}
+
+menu {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 8px;
+}
+
+ol li span, menu button {
+  background-color: oklch(var(--lightness) var(--chroma) var(--hue));
+  padding: 8px 16px;
+  border-radius: 16px;
+  text-wrap: nowrap;
+}
+
+.logo {
+  view-transition-name: logo;
+}
+
+button {
+  cursor: pointer;
+}
+
+menu button {
+  --delay: calc(sibling-index() * 50ms);
+  animation: option-entry 350ms var(--delay, 0s) var(--ease-out) backwards;
+  view-transition-class: option;
+
+}
+
+::view-transition-old(.option) {
+  animation: option-leave 150ms var(--ease-in) forwards;
+}
+
+@keyframes option-entry {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+}
+@keyframes option-leave {
+  to {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+}
