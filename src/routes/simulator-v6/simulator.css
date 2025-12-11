@@ -33,13 +33,14 @@ aside ul {
 aside ul li {
   display: grid;
   padding-inline: 0;
-  animation: option-entry 350ms var(--delay, 0s) var(--ease-out) backwards;
-}
-aside button {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  animation: option-entry 350ms var(--delay, 0s) var(--ease-out) backwards;
+}
+aside ul li span {
+  margin-right: auto;
 }
 aside:has(ul:empty) {
   display: none;
