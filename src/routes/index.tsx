@@ -1,5 +1,4 @@
 import { component$ } from "@builder.io/qwik";
-import type { DocumentHead } from "@builder.io/qwik-city";
 
 export default component$(() => {
   return (
@@ -10,16 +9,10 @@ export default component$(() => {
         <br />
         Happy coding.
       </div>
+      <a href="/simulator">Simulateur</a>
+      <a href="/simulator-v2">Simulateur V2</a>
+      <a href="/simulator-v3">Simulateur V3</a>
+      <a href="/simulator-v4">Simulateur V4</a>
     </>
   );
 });
-
-export const head: DocumentHead = {
-  title: "Welcome to Qwik",
-  meta: [
-    {
-      name: "description",
-      content: "Qwik site description",
-    },
-  ],
-};
