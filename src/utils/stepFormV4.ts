@@ -18,6 +18,7 @@ const task = {
   options: [
     { key: "supply", label: "Fourniture" },
     { key: "installation", label: "Pose" },
+    { key: "complete", label: "Fourniture & Pose" },
     { key: "repairs", label: "Réparation" },
     { key: "replacement", label: "Remplacement" },
   ]
@@ -74,7 +75,7 @@ const interiorDoorMaterials = {
 }
 
 const interiorDoorType = {
-  description: "Finitions",
+  description: "Type de porte",
   next: "7",
   options: [
     { key: "standard", label: "Battante" },
@@ -138,9 +139,9 @@ const furnishingDimensions = {
   description: "Dimensions du meuble",
   next: "13",
   options: [
-    { key: "small", label: "Petit" },
-    { key: "medium", label: "Moyen" },
-    { key: "big", label: "Grand" },
+    { key: "small", label: "Petite" },
+    { key: "medium", label: "Moyenne" },
+    { key: "big", label: "Grande" },
   ]
 }
 
@@ -178,7 +179,7 @@ const confirmation = {
   description: "Validation",
   options: [
     { key: "confirm", label: "Confirmer le devis" },
-    { key: "more", label: "Ajouter d'autres éléments", next: "0" },
+    { key: "more", label: "Ajouter d'autres éléments au devis", next: "0" },
   ]
 }
 
