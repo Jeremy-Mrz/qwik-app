@@ -14,6 +14,7 @@ export default component$(() => {
       <a href="/simulator-v3">Simulateur V3</a>
       <a href="/simulator-v4">Simulateur V4</a>
       <a href="/simulator-v5">Simulateur V5</a>
+      <a href="/simulator-v6">Simulateur V6</a>
     </>
   );
 });
