@@ -45,6 +45,10 @@ export default component$(() => {
     if (simulations.length) {
       localStorage.setItem('simulations', JSON.stringify(unwrapStore(simulations)));
     }
+  });
+  useVisibleTask$(({ track }) => {
+    track(current);
+    document.getElementById('menu')?.scrollIntoView({ behavior: 'instant' });
   })
 
   const price = useComputed$(() => {
@@ -158,7 +162,7 @@ export default component$(() => {
               </h3>
             </li>
             <li>
-              <menu>
+              <menu id="menu">
                 {getOptions(current.value).map(([key, option]) => (
                   <button key={key} style={transitionName(key)} onClick$={() => add(option)} role="menuitem">
                     {option.label}
